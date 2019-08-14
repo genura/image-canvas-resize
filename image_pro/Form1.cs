@@ -49,7 +49,7 @@ namespace image_pro
 
         private void ProgressBar1_Click(object sender, EventArgs e)
         {
-               c
+               
         }
     }
 }
