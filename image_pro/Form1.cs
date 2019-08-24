@@ -37,7 +37,7 @@ namespace image_pro
                 ResizeLayer rs = new ResizeLayer(rsize, ResizeMode.BoxPad);
                 resNesnesi.Load("./sc.jfif").Resize(rs).BackgroundColor(Color.White).Save("./aa.jpg");
 
-                
+                ///aaaa
 
                 //pBar.Value 
 
