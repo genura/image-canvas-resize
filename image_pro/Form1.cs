@@ -27,7 +27,7 @@ namespace image_pro
         }
 
 
-        public Thread thOlustur ;
+        public Thread thOlustur =null;
 
 
         private void Button1_Click(object sender, EventArgs e)
@@ -58,17 +58,24 @@ namespace image_pro
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            // baslat
-            thOlustur = new Thread(item_ekle);
-            thOlustur.Start();
-            btnStop.Enabled = true;
+            
+            Form2 frm = new Form2();
+            frm.ShowDialog();
+
+
+           
+           // frm.ShowDialog();
+            
+
+           // item_ekleAsync();
+
         }
 
-        public void item_ekle() {
+        public async Task item_ekleAsync() {
             for (var i=0;i<=100;i++)
             {
-                items.Items.Add("a");
                 
+                await Task.Delay(1000);
             }
             
         }
@@ -77,5 +84,10 @@ namespace image_pro
         {
             thOlustur.Abort();
         }
+
+
+
+      
+
     }
 }
