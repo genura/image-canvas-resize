@@ -13,7 +13,7 @@ using ImageProcessor.Imaging;
 using ImageProcessor.Imaging.Filters.EdgeDetection;
 using ImageProcessor.Imaging.Filters.Photo;
 using ImageProcessor;
-
+using System.Threading;
 
 
 
@@ -25,6 +25,10 @@ namespace image_pro
         {
             InitializeComponent();
         }
+
+
+        public Thread thOlustur ;
+
 
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -40,7 +44,7 @@ namespace image_pro
                 ///aaaa
 
                 //pBar.Value 
-
+                
 
 
             }
@@ -50,6 +54,28 @@ namespace image_pro
         private void ProgressBar1_Click(object sender, EventArgs e)
         {
                
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            // baslat
+            thOlustur = new Thread(item_ekle);
+            thOlustur.Start();
+            btnStop.Enabled = true;
+        }
+
+        public void item_ekle() {
+            for (var i=0;i<=100;i++)
+            {
+                items.Items.Add("a");
+                
+            }
+            
+        }
+
+        private void BtnStop_Click(object sender, EventArgs e)
+        {
+            thOlustur.Abort();
         }
     }
 }
