@@ -30,7 +30,7 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // button1
@@ -92,20 +92,21 @@
             this.checkedListBox1.Size = new System.Drawing.Size(776, 304);
             this.checkedListBox1.TabIndex = 1;
             // 
-            // progressBar1
+            // pBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(360, 57);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(213, 23);
-            this.progressBar1.TabIndex = 2;
-            this.progressBar1.Click += new System.EventHandler(this.ProgressBar1_Click);
+            this.pBar.Location = new System.Drawing.Point(346, 57);
+            this.pBar.Name = "pBar";
+            this.pBar.Size = new System.Drawing.Size(360, 23);
+            this.pBar.TabIndex = 2;
+            this.pBar.Value = 23;
+            this.pBar.Click += new System.EventHandler(this.ProgressBar1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.pBar);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -118,7 +119,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar pBar;
     }
 }
 

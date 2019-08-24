@@ -39,7 +39,7 @@ namespace image_pro
 
                 
 
-
+                //pBar.Value 
 
 
 
