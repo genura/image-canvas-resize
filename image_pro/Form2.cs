@@ -30,7 +30,7 @@ namespace image_pro
         private async Task TryTask()
         {
             CancellationTokenSource source = new CancellationTokenSource();
-            source.CancelAfter(TimeSpan.FromSeconds(1));
+            source.CancelAfter(TimeSpan.FromSeconds(5));
             Task<int> task = Task.Run(() => slowFunc(1, 2, source.Token), source.Token);
 
             // (A canceled task will raise an exception when awaited).
@@ -42,17 +42,18 @@ namespace image_pro
         private int slowFunc(int a, int b, CancellationToken cancellationToken)
         {
             // baslat
-
+            MessageBox.Show("aaa"); 
             string someString = string.Empty;
             for (int i = 0; i < 200000; i++)
             {
                 someString += "a";
 
-                this.itemler.Items.Add(someString);
+               itemler.Items.Add("a");
 
                 if (i == 100)
                 {
-                    
+                   
+
                     cancellationToken.ThrowIfCancellationRequested(); this.Close();
                 }
                     
@@ -64,7 +65,7 @@ namespace image_pro
         private void Form2_Shown(object sender, EventArgs e)
         {
             TryTask();
-            MessageBox.Show("aaa");
+            
         }
     }
 }
