@@ -26,105 +26,6 @@ namespace image_pro
         }
 
 
-        public Thread thOlustur =null;
-
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            //
-            using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
-            {
-                // resim yüklemesi.
-                Size rsize = new Size(520, 520);
-
-                ResizeLayer rs = new ResizeLayer(rsize, ResizeMode.BoxPad);
-                resNesnesi.Load("./sc.jfif").Resize(rs).BackgroundColor(Color.White).Save("./aa.jpg");
-
-                ///aaaa
-
-                //pBar.Value 
-
-
-
-            }
-
-        }
-
-
-
-      
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-
-
-            Thread t = new Thread(doWork);          // Kick off a new thread
-             t.Start();
-
-            btnStop.Enabled = true;
-
-
-           
-           // frm.ShowDialog();
-            
-
-           // item_ekleAsync();
-
-        }
-
-        public async Task item_ekleAsync() {
-            for (var i=0;i<=100;i++)
-            {
-                
-                await Task.Delay(1000);
-            }
-            
-        }
-
-
-
-
-        //thread=
-        private volatile bool m_StopThread;
-
-        private void BtnStop_Click(object sender, EventArgs e)
-        {
-            m_StopThread = false;
-        }
-
-         void doWork()
-        {
-            while (m_StopThread)
-            {
-                for (int i = 0; i < 200000; i++)
-                {
-
-                    if (m_StopThread == false)
-                    {
-                        MessageBox.Show("asd");
-                    }
-                   
-
-                
-
-                }
-            }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void BnStart_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("aaa");
-                }
-
-        private void ToolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
@@ -151,15 +52,25 @@ namespace image_pro
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-
+            
             using (OpenFileDialog Dialog = new OpenFileDialog { Filter = "All Files|*.*", Title = "OpenFile Dialog", RestoreDirectory = true })
             {
+                Dialog.Multiselect = true;
+
                 if (Dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
+
+
                     string Path = Dialog.FileName;
-                    string FolderName = System.IO.Path.GetDirectoryName(Path);
-                    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(FolderName);
-                    MessageBox.Show(info.Name);
+                    string[] fileNameAndPath = Dialog.FileNames;
+                    string[] filename = Dialog.SafeFileNames;
+
+                    txtSource.Text = System.IO.Path.GetDirectoryName(Path);
+                    for (int i = 0; i < Dialog.SafeFileNames.Count(); i++)
+                    {
+                        fileLists.Items.Add( fileNameAndPath[i]);
+                    }
+
                 }
             }
         }
@@ -168,22 +79,73 @@ namespace image_pro
         {
 
             saveFileDialog1.ShowDialog();
-            MessageBox.Show(saveFileDialog1.FileName);
-            /*
-            using (OpenFileDialog Dialog = new OpenFileDialog { Filter = "All Files|*.*", Title = "OpenFile Dialog", RestoreDirectory = true })
-            {
-                if (Dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    string Path = Dialog.FileName;
-                    string FolderName = System.IO.Path.GetDirectoryName(Path);
-                    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(FolderName);
-                    MessageBox.Show(info.Name);
-                }
-            }
-            */
+            txtSave.Text= System.IO.Path.GetDirectoryName(saveFileDialog1.FileName);
+       
         }
 
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            ListBox.SelectedObjectCollection selectedItems = new ListBox.SelectedObjectCollection(fileLists);
+            selectedItems = fileLists.SelectedItems;
+            if (fileLists.SelectedIndex != -1)
+            {
+                for (int i = selectedItems.Count - 1; i >= 0; i--)
+                    fileLists.Items.Remove(selectedItems[i]);
+            }
+
+        
+        }
+
+        private void FileLists_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fileLists.Items.Count > 0)
+            {
+                btnDelete.Enabled = true;
+            }
+            else btnDelete.Enabled = false;
+        }
+
+        private void FileLists_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Delete) Button5_Click(sender,e);
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+        
+        
+           for (int i = 0; i < fileLists.Items.Count; i++)
+            {
+                fileLists.SetSelected(i, true);
+            }
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < fileLists.Items.Count; i++)
+            {
+                fileLists.SetSelected(i, false);
+            }
+        }
+
+        private void TextBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void BnStart_Click(object sender, EventArgs e)
+        {
+            //
+            using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
+            {
+                // resim yüklemesi.
+                Size rsize = new Size(520, 520);
+
+                ResizeLayer rs = new ResizeLayer(rsize, ResizeMode.BoxPad);
+                resNesnesi.Load("./sc.jfif").Resize(rs).BackgroundColor(Color.White).Save("./aa.jpg");
 
 
+            }
+        }
     }
 }
