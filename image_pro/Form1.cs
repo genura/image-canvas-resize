@@ -18,9 +18,9 @@ using System.IO;
 
 namespace image_pro
 {
-    public partial class Form1 : Form
+    public partial class ImageCanvasSizeForm : Form
     {
-        public Form1()
+        public ImageCanvasSizeForm()
         {
             InitializeComponent();
         }
@@ -91,6 +91,7 @@ namespace image_pro
             {
                 for (int i = selectedItems.Count - 1; i >= 0; i--)
                     fileLists.Items.Remove(selectedItems[i]);
+                
             }
 
         
@@ -135,17 +136,73 @@ namespace image_pro
 
         private void BnStart_Click(object sender, EventArgs e)
         {
-            //
+            //image async start
+
+
+            if (BgrdWorker.IsBusy != true)
+            {
+                bnStart.Enabled = false;
+                // Start the asynchronous operation.
+                BgrdWorker.RunWorkerAsync( );
+            }
+   
+        }
+
+        private void BtnStop_Click(object sender, EventArgs e)
+        {
+            if (BgrdWorker.WorkerSupportsCancellation == true)
+            {
+                // Cancel the async operation.
+                BgrdWorker.CancelAsync();
+              
+            }
+        }
+
+
+
+        private void BgrdWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //image async operations...
+
+
+       
+
             using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
             {
                 // resim yüklemesi.
                 Size rsize = new Size(520, 520);
-
                 ResizeLayer rs = new ResizeLayer(rsize, ResizeMode.BoxPad);
-                resNesnesi.Load("./sc.jfif").Resize(rs).BackgroundColor(Color.White).Save("./aa.jpg");
+                //fileLists.Items[2].ToString();
+                for (int i = 0; i <= fileLists.Items.Count; i++) {
+                    BgrdWorker.ReportProgress(i);
+                    // check status on each step
+                    if (BgrdWorker.CancellationPending == true)
+                    {
+                        e.Cancel = true;
+                        return; // abort work, if it's cancelled
+                    }
 
+                    resNesnesi.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save("./"+i+".jpg");
 
+                }
+                
+                
             }
+
         }
+
+        private void BgrdWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // progressbar
+            pBar.Value = e.ProgressPercentage;
+        }
+
+        private void BgrdWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // image async operations complated
+            bnStart.Enabled = true;
+        }
+
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace image_pro
 {
-    partial class Form1
+    partial class ImageCanvasSizeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -57,6 +57,7 @@
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.openDia = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.BgrdWorker = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -155,6 +156,7 @@
             this.btnStop.TabIndex = 10;
             this.btnStop.Text = "S&top";
             this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
             // 
             // bnStart
             // 
@@ -345,7 +347,15 @@
             // 
             this.saveFileDialog1.FileName = "-";
             // 
-            // Form1
+            // BgrdWorker
+            // 
+            this.BgrdWorker.WorkerReportsProgress = true;
+            this.BgrdWorker.WorkerSupportsCancellation = true;
+            this.BgrdWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgrdWorker_DoWork);
+            this.BgrdWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgrdWorker_ProgressChanged);
+            this.BgrdWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgrdWorker_RunWorkerCompleted);
+            // 
+            // ImageCanvasSizeForm
             // 
             this.AcceptButton = this.bnStart;
             this.AllowDrop = true;
@@ -361,7 +371,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "ImageCanvasSizeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IR: Image Resize v b0.12";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
@@ -410,6 +420,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.ComponentModel.BackgroundWorker BgrdWorker;
     }
 }
 
