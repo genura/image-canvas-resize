@@ -33,15 +33,15 @@ namespace image_pro
             foreach (string file in files)
             {
                 fileLists.Items.Add(file);
-
-                //THEN DO WHATEVER YOU WANT TO EACH file in files
-                //e.g.
-
-
-
+                               
             }
-        }
 
+
+            statusRecCount();
+        }
+        public void statusRecCount() {
+            statusStrip1.Items[6].Text =  fileLists.Items.Count.ToString();
+        }
         private void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false) == true)
@@ -73,6 +73,8 @@ namespace image_pro
 
                 }
             }
+
+            statusRecCount();
         }
 
         private void Button2_Click_1(object sender, EventArgs e)
@@ -93,8 +95,8 @@ namespace image_pro
                     fileLists.Items.Remove(selectedItems[i]);
                 
             }
+            statusRecCount();
 
-        
         }
 
         private void FileLists_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,6 +121,7 @@ namespace image_pro
             {
                 fileLists.SetSelected(i, true);
             }
+            
         }
 
         private void Button4_Click(object sender, EventArgs e)
@@ -136,12 +139,19 @@ namespace image_pro
 
         private void BnStart_Click(object sender, EventArgs e)
         {
+
             //image async start
-
-
+           
             if (BgrdWorker.IsBusy != true)
             {
+                // parts disable
                 bnStart.Enabled = false;
+                btnStop.Enabled = true;
+                g1.Enabled = false;
+                g2.Enabled = false;
+                g3.Enabled = false;
+
+
                 // Start the asynchronous operation.
                 BgrdWorker.RunWorkerAsync( );
             }
@@ -154,7 +164,14 @@ namespace image_pro
             {
                 // Cancel the async operation.
                 BgrdWorker.CancelAsync();
-              
+
+                // parts enable
+                bnStart.Enabled = true;
+                btnStop.Enabled = false;
+                g1.Enabled = true;
+                g2.Enabled = true;
+                g3.Enabled = true;
+           
             }
         }
 
@@ -194,15 +211,33 @@ namespace image_pro
         private void BgrdWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             // progressbar
-            pBar.Value = e.ProgressPercentage;
+            
+
+        
+            if (e.ProgressPercentage > 0)
+            {
+               
+                
+                pBar.Value = (int)Math.Round((double)(e.ProgressPercentage * 100 / fileLists.Items.Count));
+                toolStripStatusLabel2.Text ="  % "+ pBar.Value.ToString();
+            }
         }
 
         private void BgrdWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // image async operations complated
-            bnStart.Enabled = true;
+          
+                // parts enable
+                bnStart.Enabled = true;
+                btnStop.Enabled = false;
+                g1.Enabled = true;
+                g2.Enabled = true;
+                g3.Enabled = true;
+                 toolStripStatusLabel2.Text = " Completed " ;
+            toolStripStatusLabel2.Text = " Ready ";
+            pBar.Value = 0;
         }
 
-
+     
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.g1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSource = new System.Windows.Forms.TextBox();
@@ -42,14 +42,14 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.stTxt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.g3 = new System.Windows.Forms.GroupBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.g2 = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.fileLists = new System.Windows.Forms.ListBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -58,28 +58,32 @@
             this.openDia = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.BgrdWorker = new System.ComponentModel.BackgroundWorker();
-            this.groupBox1.SuspendLayout();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.g1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.g3.SuspendLayout();
+            this.g2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // g1
             // 
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtSource);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtSave);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(458, 124);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "[ 1 ]";
+            this.g1.Controls.Add(this.button2);
+            this.g1.Controls.Add(this.label2);
+            this.g1.Controls.Add(this.txtSource);
+            this.g1.Controls.Add(this.label1);
+            this.g1.Controls.Add(this.txtSave);
+            this.g1.Controls.Add(this.button1);
+            this.g1.Location = new System.Drawing.Point(12, 12);
+            this.g1.Name = "g1";
+            this.g1.Size = new System.Drawing.Size(458, 124);
+            this.g1.TabIndex = 5;
+            this.g1.TabStop = false;
+            this.g1.Text = "[ 1 ]";
             // 
             // button2
             // 
@@ -150,9 +154,10 @@
             // btnStop
             // 
             this.btnStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnStop.Location = new System.Drawing.Point(355, 28);
+            this.btnStop.Enabled = false;
+            this.btnStop.Location = new System.Drawing.Point(385, 19);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.Size = new System.Drawing.Size(56, 41);
             this.btnStop.TabIndex = 10;
             this.btnStop.Text = "S&top";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -160,9 +165,9 @@
             // 
             // bnStart
             // 
-            this.bnStart.Location = new System.Drawing.Point(263, 28);
+            this.bnStart.Location = new System.Drawing.Point(263, 19);
             this.bnStart.Name = "bnStart";
-            this.bnStart.Size = new System.Drawing.Size(86, 23);
+            this.bnStart.Size = new System.Drawing.Size(107, 41);
             this.bnStart.TabIndex = 6;
             this.bnStart.Text = "&Start >>";
             this.bnStart.UseVisualStyleBackColor = true;
@@ -174,14 +179,17 @@
             this.pBar.Name = "pBar";
             this.pBar.Size = new System.Drawing.Size(225, 23);
             this.pBar.TabIndex = 5;
-            this.pBar.Value = 23;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
-            this.toolStripStatusLabel3});
+            this.stTxt,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel4,
+            this.toolStripStatusLabel5,
+            this.toolStripStatusLabel6});
             this.statusStrip1.Location = new System.Drawing.Point(0, 537);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(482, 22);
@@ -200,25 +208,24 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel2.Text = "|";
             // 
-            // toolStripStatusLabel3
+            // stTxt
             // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(32, 17);
-            this.toolStripStatusLabel3.Text = " %23";
+            this.stTxt.Name = "stTxt";
+            this.stTxt.Size = new System.Drawing.Size(0, 17);
             // 
-            // groupBox4
+            // g3
             // 
-            this.groupBox4.Controls.Add(this.textBox4);
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.checkBox3);
-            this.groupBox4.Controls.Add(this.checkBox2);
-            this.groupBox4.Controls.Add(this.checkBox1);
-            this.groupBox4.Location = new System.Drawing.Point(12, 356);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(458, 82);
-            this.groupBox4.TabIndex = 10;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "[ 3 ] :  Image size settings";
+            this.g3.Controls.Add(this.textBox4);
+            this.g3.Controls.Add(this.textBox1);
+            this.g3.Controls.Add(this.checkBox3);
+            this.g3.Controls.Add(this.checkBox2);
+            this.g3.Controls.Add(this.checkBox1);
+            this.g3.Location = new System.Drawing.Point(12, 356);
+            this.g3.Name = "g3";
+            this.g3.Size = new System.Drawing.Size(458, 82);
+            this.g3.TabIndex = 10;
+            this.g3.TabStop = false;
+            this.g3.Text = "[ 3 ] :  Image size settings";
             // 
             // textBox4
             // 
@@ -274,18 +281,18 @@
             this.checkBox1.Text = "520 X 520 px";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // g2
             // 
-            this.groupBox3.Controls.Add(this.btnDelete);
-            this.groupBox3.Controls.Add(this.fileLists);
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Location = new System.Drawing.Point(12, 142);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(458, 208);
-            this.groupBox3.TabIndex = 11;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "[ 2 ] : Image List";
+            this.g2.Controls.Add(this.btnDelete);
+            this.g2.Controls.Add(this.fileLists);
+            this.g2.Controls.Add(this.button4);
+            this.g2.Controls.Add(this.button3);
+            this.g2.Location = new System.Drawing.Point(12, 142);
+            this.g2.Name = "g2";
+            this.g2.Size = new System.Drawing.Size(458, 208);
+            this.g2.TabIndex = 11;
+            this.g2.TabStop = false;
+            this.g2.Text = "[ 2 ] : Image List";
             // 
             // btnDelete
             // 
@@ -355,6 +362,29 @@
             this.BgrdWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgrdWorker_ProgressChanged);
             this.BgrdWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgrdWorker_RunWorkerCompleted);
             // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(160, 17);
+            this.toolStripStatusLabel3.Text = "                                                   ";
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(79, 17);
+            this.toolStripStatusLabel4.Text = "Image Count:";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel5.Text = "|";
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(0, 17);
+            // 
             // ImageCanvasSizeForm
             // 
             this.AcceptButton = this.bnStart;
@@ -363,11 +393,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
             this.ClientSize = new System.Drawing.Size(482, 559);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.g2);
+            this.Controls.Add(this.g3);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.g1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -376,14 +406,14 @@
             this.Text = "IR: Image Resize v b0.12";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.g1.ResumeLayout(false);
+            this.g1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
+            this.g3.ResumeLayout(false);
+            this.g3.PerformLayout();
+            this.g2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -391,7 +421,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox g1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSource;
@@ -402,15 +432,15 @@
         private System.Windows.Forms.Button bnStart;
         private System.Windows.Forms.ProgressBar pBar;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox g3;
+        private System.Windows.Forms.GroupBox g2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel stTxt;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.OpenFileDialog openDia;
@@ -421,6 +451,10 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.ComponentModel.BackgroundWorker BgrdWorker;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
     }
 }
 
