@@ -32,7 +32,9 @@ namespace image_pro
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string file in files)
             {
-                fileLists.Items.Add(file);
+                //.jpg, *.jpeg, *.jpe, *.jfif, *.png
+                if (Path.GetExtension(file) ==".jpg" || Path.GetExtension(file) == ".jpeg" || Path.GetExtension(file) == ".jpe" || Path.GetExtension(file) == ".jfif" ||  Path.GetExtension(file) == ".png")
+                       fileLists.Items.Add(file);
                                
             }
 
@@ -53,7 +55,7 @@ namespace image_pro
         private void Button1_Click_1(object sender, EventArgs e)
         {
             
-            using (OpenFileDialog Dialog = new OpenFileDialog { Filter = "All Files|*.*", Title = "OpenFile Dialog", RestoreDirectory = true })
+            using (OpenFileDialog Dialog = new OpenFileDialog { Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png", Title = "OpenFile Dialog", RestoreDirectory = true })
             {
                 Dialog.Multiselect = true;
 
@@ -139,6 +141,16 @@ namespace image_pro
 
         private void BnStart_Click(object sender, EventArgs e)
         {
+           
+
+            if (fileLists.Items.Count == 0)
+            {
+                toolStripStatusLabel2.Text = "Files not found !";
+                return;
+            }
+                
+
+
 
             //image async start
            
@@ -189,7 +201,7 @@ namespace image_pro
                 // resim yüklemesi.
                 Size rsize = new Size(520, 520);
                 ResizeLayer rs = new ResizeLayer(rsize, ResizeMode.BoxPad);
-                //fileLists.Items[2].ToString();
+               
                 for (int i = 0; i <= fileLists.Items.Count; i++) {
                     BgrdWorker.ReportProgress(i);
                     // check status on each step
