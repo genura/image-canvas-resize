@@ -48,11 +48,11 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.g3 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtBoy = new System.Windows.Forms.TextBox();
+            this.txtEn = new System.Windows.Forms.TextBox();
+            this.cc = new System.Windows.Forms.CheckBox();
+            this.c195 = new System.Windows.Forms.CheckBox();
+            this.c520 = new System.Windows.Forms.CheckBox();
             this.g2 = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.fileLists = new System.Windows.Forms.ListBox();
@@ -237,11 +237,11 @@
             // 
             // g3
             // 
-            this.g3.Controls.Add(this.textBox4);
-            this.g3.Controls.Add(this.textBox1);
-            this.g3.Controls.Add(this.checkBox3);
-            this.g3.Controls.Add(this.checkBox2);
-            this.g3.Controls.Add(this.checkBox1);
+            this.g3.Controls.Add(this.txtBoy);
+            this.g3.Controls.Add(this.txtEn);
+            this.g3.Controls.Add(this.cc);
+            this.g3.Controls.Add(this.c195);
+            this.g3.Controls.Add(this.c520);
             this.g3.Location = new System.Drawing.Point(12, 356);
             this.g3.Name = "g3";
             this.g3.Size = new System.Drawing.Size(458, 82);
@@ -249,59 +249,57 @@
             this.g3.TabStop = false;
             this.g3.Text = "[ 3 ] :  Image size settings";
             // 
-            // textBox4
+            // txtBoy
             // 
-            this.textBox4.Location = new System.Drawing.Point(333, 45);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 5;
-            this.textBox4.Text = "0";
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
+            this.txtBoy.Location = new System.Drawing.Point(333, 45);
+            this.txtBoy.Name = "txtBoy";
+            this.txtBoy.Size = new System.Drawing.Size(100, 20);
+            this.txtBoy.TabIndex = 5;
+            this.txtBoy.Text = "0";
+            this.txtBoy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
-            // textBox1
+            // txtEn
             // 
-            this.textBox1.Location = new System.Drawing.Point(333, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "0";
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
+            this.txtEn.Location = new System.Drawing.Point(333, 19);
+            this.txtEn.Name = "txtEn";
+            this.txtEn.Size = new System.Drawing.Size(100, 20);
+            this.txtEn.TabIndex = 4;
+            this.txtEn.Text = "0";
+            this.txtEn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
-            // checkBox3
+            // cc
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(260, 37);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(67, 17);
-            this.checkBox3.TabIndex = 3;
-            this.checkBox3.Text = "Custom :";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cc.AutoSize = true;
+            this.cc.Location = new System.Drawing.Point(260, 37);
+            this.cc.Name = "cc";
+            this.cc.Size = new System.Drawing.Size(67, 17);
+            this.cc.TabIndex = 3;
+            this.cc.Text = "Custom :";
+            this.cc.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // c195
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(149, 37);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(89, 17);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "219 X 219 px";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.c195.AutoSize = true;
+            this.c195.Checked = true;
+            this.c195.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.c195.Location = new System.Drawing.Point(149, 37);
+            this.c195.Name = "c195";
+            this.c195.Size = new System.Drawing.Size(89, 17);
+            this.c195.TabIndex = 2;
+            this.c195.Text = "195 X 195 px";
+            this.c195.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // c520
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(12, 37);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(89, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "520 X 520 px";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.c520.AutoSize = true;
+            this.c520.Checked = true;
+            this.c520.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.c520.Location = new System.Drawing.Point(12, 37);
+            this.c520.Name = "c520";
+            this.c520.Size = new System.Drawing.Size(89, 17);
+            this.c520.TabIndex = 1;
+            this.c520.Text = "520 X 520 px";
+            this.c520.UseVisualStyleBackColor = true;
             // 
             // g2
             // 
@@ -394,7 +392,7 @@
             this.MaximizeBox = false;
             this.Name = "ImageCanvasSizeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "IR: Image Resize v b0.12  | c.yener";
+            this.Text = "IR: Image Resize v b0.12  | cuneyt.yener";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.g1.ResumeLayout(false);
@@ -428,18 +426,18 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox c520;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel stTxt;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox c195;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ListBox fileLists;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.TextBox txtBoy;
+        private System.Windows.Forms.TextBox txtEn;
+        private System.Windows.Forms.CheckBox cc;
         private System.ComponentModel.BackgroundWorker BgrdWorker;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;

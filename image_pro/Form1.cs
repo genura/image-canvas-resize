@@ -84,7 +84,8 @@ namespace image_pro
 
             saveFileDialog1.ShowDialog();
             txtSave.Text= System.IO.Path.GetDirectoryName(saveFileDialog1.FileName);
-       
+            
+
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -142,10 +143,10 @@ namespace image_pro
         private void BnStart_Click(object sender, EventArgs e)
         {
            
-
-            if (fileLists.Items.Count == 0)
+            // filelist bos ise islem yapma...
+            if (fileLists.Items.Count == 0 || txtSave.TextLength==0 || chkbox1c()==false) 
             {
-                toolStripStatusLabel2.Text = "Files not found !";
+                toolStripStatusLabel2.Text = "Files not found ! or Save destination path of target?";
                 return;
             }
                 
@@ -170,6 +171,20 @@ namespace image_pro
    
         }
 
+
+        private Boolean chkbox1c()
+        {
+            //checkbox controls
+            if (c520.Checked == true || c195.Checked == true || cc.Checked == true)
+            {
+                return true;
+            }
+            else return false;
+
+
+        }
+
+
         private void BtnStop_Click(object sender, EventArgs e)
         {
             if (BgrdWorker.WorkerSupportsCancellation == true)
@@ -192,6 +207,8 @@ namespace image_pro
         private void BgrdWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             //image async operations...
+            String dosyaAdi;
+            String yolAdi = txtSave.Text;
 
 
        
@@ -201,8 +218,9 @@ namespace image_pro
                 // resim yüklemesi.
                 Size rsize = new Size(520, 520);
                 ResizeLayer rs = new ResizeLayer(rsize, ResizeMode.BoxPad);
-               
+
                 for (int i = 0; i <= fileLists.Items.Count; i++) {
+                
                     BgrdWorker.ReportProgress(i);
                     // check status on each step
                     if (BgrdWorker.CancellationPending == true)
@@ -211,7 +229,7 @@ namespace image_pro
                         return; // abort work, if it's cancelled
                     }
 
-                    resNesnesi.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save("./"+i+".jpg");
+                    resNesnesi.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save(yolAdi + "/"+ System.IO.Path.GetFileName(fileLists.Items[i].ToString()) );
 
                 }
                 
@@ -250,6 +268,11 @@ namespace image_pro
             pBar.Value = 0;
         }
 
-     
+
+
+
+
+
     }
+
 }
