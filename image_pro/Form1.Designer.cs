@@ -395,6 +395,7 @@
             this.Text = "IR: Image Resize v b0.12  | cuneyt.yener";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ImageCanvasSizeForm_KeyDown);
             this.g1.ResumeLayout(false);
             this.g1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

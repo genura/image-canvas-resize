@@ -143,14 +143,19 @@ namespace image_pro
         private void BnStart_Click(object sender, EventArgs e)
         {
            
-            // filelist bos ise islem yapma...
+            // filelist bos ise...path yok ise...check kontrol false ise islem yapma...
             if (fileLists.Items.Count == 0 || txtSave.TextLength==0 || chkbox1c()==false) 
             {
                 toolStripStatusLabel2.Text = "Files not found ! or Save destination path of target?";
                 return;
             }
-                
 
+            if (cc.Checked==true && (Int32.Parse(txtEn.Text)<10 || Int32.Parse(txtBoy.Text) < 10 ) )
+            {
+                toolStripStatusLabel2.Text = "Must be Minimum Size: 10x10 px ";
+                return;
+            }
+                
 
 
             //image async start
@@ -164,7 +169,7 @@ namespace image_pro
                 g2.Enabled = false;
                 g3.Enabled = false;
 
-
+                toolStripStatusLabel2.Text = "please wait...";
                 // Start the asynchronous operation.
                 BgrdWorker.RunWorkerAsync( );
             }
@@ -207,11 +212,14 @@ namespace image_pro
         private void BgrdWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             //image async operations...
-            String dosyaAdi;
+           
             String yolAdi = txtSave.Text;
 
+            if (c520.Checked == true )
+            {
+                dYarat(yolAdi + "/520x520");
+            }
 
-       
 
             using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
             {
@@ -268,10 +276,36 @@ namespace image_pro
             pBar.Value = 0;
         }
 
+        private void ImageCanvasSizeForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ( e.KeyCode == Keys.Escape)
+            {
+                if (btnStop.Enabled==true) BtnStop_Click(sender,e);
+            }
+
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (bnStart.Enabled == true) BnStart_Click(sender, e);
+            }
+
+        }
 
 
 
+        private Boolean dYarat(string yol)
+        {
+            
 
+            bool exists = System.IO.Directory.Exists(yol);
+
+            if (!exists)
+            {
+                System.IO.Directory.CreateDirectory(yol);
+                return true;
+            } 
+            else  return false;
+        }
 
     }
 
