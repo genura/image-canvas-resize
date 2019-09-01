@@ -142,12 +142,12 @@ namespace image_pro
 
         private void BnStart_Click(object sender, EventArgs e)
         {
-            if (g3.Controls.OfType<CheckBox>().Any(x => x.Checked))
+            /*if (g3.Controls.OfType<CheckBox>().Any(x => x.Checked))
             {
                 g3.Controls.OfType<CheckBox>().Any(x => x.Checked);
                
                 return;
-            }
+            }*/
             // filelist bos ise...path yok ise...check kontrol false ise islem yapma...
             if (fileLists.Items.Count == 0 || txtSave.TextLength==0 || chkbox1c()==false) 
             {
@@ -224,35 +224,28 @@ namespace image_pro
 
             ResizeLayer rs = null;
             Size Rsize = new Size(0, 0);
-            Size Rsize2;
-         
             
 
 
-            using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
+
+
+
+            if (c520.Checked == true)
             {
-                // resim yüklemesi.
 
-                 
+                Rsize.Width =520;
+                Rsize.Height = 520;
 
+                rs = new ResizeLayer(Rsize, ResizeMode.BoxPad);
 
-                for (int a=0; a<=3;a++)
+                p1 = txtSave.Text + "/520x520";
+                yolAdi = p1;
+
+                if (dYarat(p1) == false) return;
+
+                using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
                 {
-                    
-                    if (c520.Checked == true)
-                    {
-
-                        if (dYarat(p1) == false) return;
-                        
-                    }
-
-                    Rsize = new Size(520, 520);
-
-                    rs = new ResizeLayer(Rsize, ResizeMode.BoxPad);
-
-                    p1 = txtSave.Text + "/520x520";
-                    yolAdi = yolAdi + p1;
-                    MessageBox.Show(yolAdi);
+                    // resim yüklemesi.
 
                     for (int i = 0; i <= fileLists.Items.Count; i++)
                     {
@@ -266,9 +259,12 @@ namespace image_pro
                         }
                         resNesnesi.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save(yolAdi + "/" + System.IO.Path.GetFileName(fileLists.Items[i].ToString()));
                     }
+
                 }
 
+
             }
+
 
         }
 
