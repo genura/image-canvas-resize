@@ -142,7 +142,12 @@ namespace image_pro
 
         private void BnStart_Click(object sender, EventArgs e)
         {
-           
+            if (g3.Controls.OfType<CheckBox>().Any(x => x.Checked))
+            {
+                g3.Controls.OfType<CheckBox>().Any(x => x.Checked);
+               
+                return;
+            }
             // filelist bos ise...path yok ise...check kontrol false ise islem yapma...
             if (fileLists.Items.Count == 0 || txtSave.TextLength==0 || chkbox1c()==false) 
             {
@@ -212,39 +217,62 @@ namespace image_pro
         private void BgrdWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             //image async operations...
-           
-            String yolAdi = txtSave.Text;
+            string yolAdi = txtSave.Text;
+            string p1 = "";
+            string p2 = "";
+            string p3 = "";
 
-            if (c520.Checked == true )
-            {
-                dYarat(yolAdi + "/520x520");
-            }
+            ResizeLayer rs = null;
+            Size Rsize = new Size(0, 0);
+            Size Rsize2;
+         
+            
 
 
             using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
             {
                 // resim yüklemesi.
-                Size rsize = new Size(520, 520);
-                ResizeLayer rs = new ResizeLayer(rsize, ResizeMode.BoxPad);
 
-                for (int i = 0; i <= fileLists.Items.Count; i++) {
-                
-                    BgrdWorker.ReportProgress(i);
-                    // check status on each step
-                    if (BgrdWorker.CancellationPending == true)
+                 
+
+
+                for (int a=0; a<=3;a++)
+                {
+                    
+                    if (c520.Checked == true)
                     {
-                        e.Cancel = true;
-                        return; // abort work, if it's cancelled
+
+                        if (dYarat(p1) == false) return;
+                        
                     }
 
-                    resNesnesi.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save(yolAdi + "/"+ System.IO.Path.GetFileName(fileLists.Items[i].ToString()) );
+                    Rsize = new Size(520, 520);
 
+                    rs = new ResizeLayer(Rsize, ResizeMode.BoxPad);
+
+                    p1 = txtSave.Text + "/520x520";
+                    yolAdi = yolAdi + p1;
+                    MessageBox.Show(yolAdi);
+
+                    for (int i = 0; i <= fileLists.Items.Count; i++)
+                    {
+
+                        BgrdWorker.ReportProgress(i);
+                        // check status on each step
+                        if (BgrdWorker.CancellationPending == true)
+                        {
+                            e.Cancel = true;
+                            return; // abort work, if it's cancelled
+                        }
+                        resNesnesi.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save(yolAdi + "/" + System.IO.Path.GetFileName(fileLists.Items[i].ToString()));
+                    }
                 }
-                
-                
+
             }
 
         }
+
+   
 
         private void BgrdWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
