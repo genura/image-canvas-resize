@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using System.ComponentModel;
-using System.Data;
+
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 
 using ImageProcessor.Imaging;
-using ImageProcessor.Imaging.Filters.EdgeDetection;
-using ImageProcessor.Imaging.Filters.Photo;
+
 using ImageProcessor;
-using System.Threading;
+
 using System.IO;
 
 namespace image_pro
@@ -142,12 +140,7 @@ namespace image_pro
 
         private void BnStart_Click(object sender, EventArgs e)
         {
-            /*if (g3.Controls.OfType<CheckBox>().Any(x => x.Checked))
-            {
-                g3.Controls.OfType<CheckBox>().Any(x => x.Checked);
-               
-                return;
-            }*/
+
             // filelist bos ise...path yok ise...check kontrol false ise islem yapma...
             if (fileLists.Items.Count == 0 || txtSave.TextLength==0 || chkbox1c()==false) 
             {
@@ -311,13 +304,13 @@ namespace image_pro
         {
             // image async operations complated
           
-                // parts enable
-                bnStart.Enabled = true;
-                btnStop.Enabled = false;
-                g1.Enabled = true;
-                g2.Enabled = true;
-                g3.Enabled = true;
-                 toolStripStatusLabel2.Text = " Completed " ;
+            // parts enable
+            bnStart.Enabled = true;
+            btnStop.Enabled = false;
+            g1.Enabled = true;
+            g2.Enabled = true;
+            g3.Enabled = true;
+            toolStripStatusLabel2.Text = " Completed " ;
             toolStripStatusLabel2.Text = " Ready ";
             pBar.Value = 0;
         }
@@ -353,6 +346,10 @@ namespace image_pro
             else  return false;
         }
 
+        private void ImageCanvasSizeForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
