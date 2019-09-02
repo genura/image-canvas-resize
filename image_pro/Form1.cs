@@ -219,51 +219,73 @@ namespace image_pro
             //image async operations...
             string yolAdi = txtSave.Text;
             string p1 = "";
-            string p2 = "";
-            string p3 = "";
 
             ResizeLayer rs = null;
+            ResizeLayer rs1 = null;
+            ResizeLayer rs2 = null;
+   
+
             Size Rsize = new Size(0, 0);
-            
 
+            ImageFactory resNesnesi1 = new ImageFactory(preserveExifData: false);
+            ImageFactory resNesnesi2 = new ImageFactory(preserveExifData: false);
+            ImageFactory resNesnesi3 = new ImageFactory(preserveExifData: false);
 
+            // resim yüklemesi.
 
-
-
-            if (c520.Checked == true)
+            for (int i = 0; i <= fileLists.Items.Count; i++)
             {
 
-                Rsize.Width =520;
-                Rsize.Height = 520;
-
-                rs = new ResizeLayer(Rsize, ResizeMode.BoxPad);
-
-                p1 = txtSave.Text + "/520x520";
-                yolAdi = p1;
-
-                if (dYarat(p1) == false) return;
-
-                using (ImageFactory resNesnesi = new ImageFactory(preserveExifData: false))
-                {
-                    // resim yüklemesi.
-
-                    for (int i = 0; i <= fileLists.Items.Count; i++)
+                    BgrdWorker.ReportProgress(i);
+                    // check status on each step
+                    if (BgrdWorker.CancellationPending == true)
                     {
-
-                        BgrdWorker.ReportProgress(i);
-                        // check status on each step
-                        if (BgrdWorker.CancellationPending == true)
-                        {
-                            e.Cancel = true;
-                            return; // abort work, if it's cancelled
-                        }
-                        resNesnesi.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save(yolAdi + "/" + System.IO.Path.GetFileName(fileLists.Items[i].ToString()));
+                        e.Cancel = true;
+                        return; // abort work, if it's cancelled
                     }
 
-                }
+                    if (c520.Checked == true)
+                    {
+                        Rsize = new Size(520, 520);
+                        rs = new ResizeLayer(Rsize, ResizeMode.BoxPad);
+                        p1 = txtSave.Text + "/520x520";
+                        yolAdi = p1;
+                        //klasor yarat
+                        dYarat(p1);
 
+                        resNesnesi1.Load(fileLists.Items[i].ToString()).Resize(rs).BackgroundColor(Color.White).Save(yolAdi + "/" + System.IO.Path.GetFileName(fileLists.Items[i].ToString()));
+                    }
+
+                    if (c195.Checked == true)
+                    {
+                        Rsize = new Size(195, 195);
+                        rs1 = new ResizeLayer(Rsize, ResizeMode.BoxPad);
+                        p1 = txtSave.Text + "/195x195";
+                        yolAdi = p1;
+                        //klasor yarat
+                        dYarat(p1);
+
+                        resNesnesi2.Load(fileLists.Items[i].ToString()).Resize(rs1).BackgroundColor(Color.White).Save(yolAdi + "/" + System.IO.Path.GetFileName(fileLists.Items[i].ToString()));
+                    }
+
+                    if (cc.Checked == true)
+                    {
+                        Rsize = new Size(Int32.Parse(txtEn.Text), Int32.Parse(txtBoy.Text));
+                        rs2 = new ResizeLayer(Rsize, ResizeMode.BoxPad);
+                        p1 = txtSave.Text + "/"+txtEn.Text+"x"+txtBoy.Text;
+                        yolAdi = p1;
+                        //klasor yarat
+                        dYarat(p1);
+
+                        resNesnesi3.Load(fileLists.Items[i].ToString()).Resize(rs2).BackgroundColor(Color.White).Save(yolAdi + "/" + System.IO.Path.GetFileName(fileLists.Items[i].ToString()));
+                    }
 
             }
+
+
+            resNesnesi1 = null;
+            resNesnesi2 = null;
+            resNesnesi3 = null;
 
 
         }
